@@ -50,4 +50,12 @@ class EmployeeReview < Minitest::Test
     assert_equal "Human Resources", d.name
   end
 
+  def test_add_employee_to_department
+    d = Department.new("Development")
+    e = Employee.new("Brian", "Yarsawich", "test@test.com", "919-555-5555", 150000)
+    d.add_employee(e)
+    assert_equal e, d.get_employee("Brian Yarsawich")
+    assert_equal e, d.get_employee("test@test.com")
+  end
+
 end
