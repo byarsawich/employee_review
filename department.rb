@@ -31,4 +31,8 @@ class Department
   def total_salary
     @employees.reduce(0.0) {|sum, e| sum + e.salary}
   end
+
+  def get_employee_list
+    @employees
+  end
 end

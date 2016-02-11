@@ -58,10 +58,29 @@ class EmployeeReview < Minitest::Test
     assert_equal e, d.get_employee(email: "test@test.com")
   end
 
+  def test_get_all_employees_in_department
+    d = Department.new("Development")
+    e1 = Employee.new("Brian", "Yarsawich", "test@test.com", "919-555-5555", 150000)
+    e2 = Employee.new("John", "Doe", "scum@test.com", "919-111-1111", 10000)
+    d.add_employee(e1)
+    d.add_employee(e2)
+    assert_equal [e1,e2], d.get_employee_list
+  end
+
   def test_get_total_salary_for_department
     d = Department.new("Development")
     d.add_employee(Employee.new("Brian", "Yarsawich", "test@test.com", "919-555-5555", 150000))
     d.add_employee(Employee.new("John", "Doe", "scum@test.com", "919-111-1111", 10000))
     assert_equal 160000, d.total_salary
   end
+
+  # def test_give_department_a_raise
+  #   d = d = Department.new("Development")
+  #   d.add_employee(Employee.new("Brian", "Yarsawich", "test@test.com", "919-555-5555", 150000))
+  #   d.add_employee(Employee.new("John", "Doe", "scum@test.com", "919-111-1111", 10000))
+  #   d.add_employee(Employee.new("Jane", "Doe", "jane@test.com", "919-555-1234", 100000))
+  #   d.add_employee(Employee.new("Jack", "Doe", "jack@test.com", "919-123-1111", 80000))
+  #   d.add_employee(Employee.new("Jack", "Black", "black@test.com", "919-123-5555", 120000))
+  #   d.add_employee(Employee.new("John", "Smith", "smith@test.com", "919-111-5555", 50000))
+  # end
 end
