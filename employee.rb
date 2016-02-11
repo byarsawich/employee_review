@@ -16,4 +16,7 @@ class Employee
     "#{@first_name} #{@last_name}"
   end
 
+  def give_raise!(amount)
+     amount > 1.0 ? @salary += amount : @salary = @salary * (1 + amount)
+  end
 end

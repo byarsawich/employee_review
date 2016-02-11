@@ -34,4 +34,14 @@ class EmployeeReview < Minitest::Test
     assert_equal 1, f.performance
   end
 
+  def test_give_employee_raise
+    e = Employee.new("Brian", "Yarsawich", "test@test.com", "919-555-5555", 150000)
+    assert_equal 150000, e.salary
+    e.give_raise!(20000)
+    assert_equal 170000, e.salary
+    f = Employee.new("John", "Doe", "scum@test.com", "919-111-1111", 10000)
+    f.give_raise!(0.01)
+    assert_equal 10100, f.salary
+  end
+
 end
