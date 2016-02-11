@@ -44,4 +44,10 @@ class EmployeeReview < Minitest::Test
     assert_equal 10100, f.salary
   end
 
+  def test_create_new_department
+    d = Department.new("Human Resources")
+    assert d
+    assert_equal "Human Resources", d.name
+  end
+
 end
