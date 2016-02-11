@@ -54,8 +54,14 @@ class EmployeeReview < Minitest::Test
     d = Department.new("Development")
     e = Employee.new("Brian", "Yarsawich", "test@test.com", "919-555-5555", 150000)
     d.add_employee(e)
-    assert_equal e, d.get_employee("Brian Yarsawich")
-    assert_equal e, d.get_employee("test@test.com")
+    assert_equal e, d.get_employee(name: "Brian Yarsawich")
+    assert_equal e, d.get_employee(email: "test@test.com")
   end
 
+  def test_get_total_salary_for_department
+    d = Department.new("Development")
+    d.add_employee(Employee.new("Brian", "Yarsawich", "test@test.com", "919-555-5555", 150000))
+    d.add_employee(Employee.new("John", "Doe", "scum@test.com", "919-111-1111", 10000))
+    assert_equal 160000, d.total_salary
+  end
 end
