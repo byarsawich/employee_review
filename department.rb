@@ -39,9 +39,7 @@ class Department
   def give_raise!(amount)
     up_for_raise = @employees.select {|e| yield(e)}
     raise_amount = amount.to_f / up_for_raise.length
-    up_for_raise.each do |e|
-      e.give_raise!(raise_amount)
-    end
+    up_for_raise.each {|e| e.give_raise!(raise_amount)}
   end
 
 end
