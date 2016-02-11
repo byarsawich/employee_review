@@ -25,4 +25,13 @@ class EmployeeReview < Minitest::Test
     assert_equal "Obviously the best employee this company has ever seen.", e.review
   end
 
+  def test_add_employee_performance
+    e = Employee.new("Brian", "Yarsawich", "test@test.com", "919-555-5555", 150000)
+    e.performance = 10
+    assert_equal 10, e.performance
+    f = Employee.new("John", "Doe", "scum@test.com", "919-111-1111", 10000)
+    f.performance = 1
+    assert_equal 1, f.performance
+  end
+
 end
