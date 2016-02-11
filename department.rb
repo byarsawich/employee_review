@@ -29,6 +29,6 @@ class Department
   end
 
   def total_salary
-    @employees.reduce {|sum, i| sum + i.salary}
+    @employees.reduce(0.0) {|sum, e| sum + e.salary}
   end
 end
