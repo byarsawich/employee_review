@@ -74,13 +74,24 @@ class EmployeeReview < Minitest::Test
     assert_equal 160000, d.total_salary
   end
 
-  # def test_give_department_a_raise
-  #   d = d = Department.new("Development")
-  #   d.add_employee(Employee.new("Brian", "Yarsawich", "test@test.com", "919-555-5555", 150000))
-  #   d.add_employee(Employee.new("John", "Doe", "scum@test.com", "919-111-1111", 10000))
-  #   d.add_employee(Employee.new("Jane", "Doe", "jane@test.com", "919-555-1234", 100000))
-  #   d.add_employee(Employee.new("Jack", "Doe", "jack@test.com", "919-123-1111", 80000))
-  #   d.add_employee(Employee.new("Jack", "Black", "black@test.com", "919-123-5555", 120000))
-  #   d.add_employee(Employee.new("John", "Smith", "smith@test.com", "919-111-5555", 50000))
-  # end
+  def test_give_department_a_raise_all_same
+    d = Department.new("Development")
+    d.add_employee(Employee.new("Brian", "Yarsawich", "test@test.com", "919-555-5555", 150000))
+    d.add_employee(Employee.new("John", "Doe", "scum@test.com", "919-111-1111", 10000))
+    d.add_employee(Employee.new("Jane", "Doe", "jane@test.com", "919-555-1234", 100000))
+    d.add_employee(Employee.new("Jack", "Doe", "jack@test.com", "919-123-1111", 80000))
+    d.add_employee(Employee.new("Jack", "Black", "black@test.com", "919-123-5555", 120000))
+    d.add_employee(Employee.new("John", "Smith", "smith@test.com", "919-111-5555", 50000))
+    d.get_employee_list.each do |e|
+      e.performance = 8
+    end
+    d.give_raise!(60000)
+    assert_equal 570000, d.total_salary
+    assert_equal 160000, d.get_employee(name: "Brian Yarsawich").salary
+    assert_equal 20000, d.get_employee(name: "John Doe").salary
+    assert_equal 110000, d.get_employee(name: "Jane Doe").salary
+    assert_equal 90000, d.get_employee(name: "Jack Doe").salary
+    assert_equal 130000, d.get_employee(name: "Jack Black").salary
+    assert_equal 60000, d.get_employee(name: "John Smith").salary
+  end
 end

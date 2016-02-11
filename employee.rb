@@ -1,5 +1,5 @@
 class Employee
-  attr_reader :first_name, :middle_name, :last_name, :salary, :email, :phone_number
+  attr_reader :first_name, :middle_name, :last_name, :email, :phone_number
   attr_accessor :review, :performance
 
   def initialize(first_name, last_name, email, phone_number, salary, middle_name = "")
@@ -8,9 +8,13 @@ class Employee
     @last_name = last_name
     @email = email
     @phone_number = phone_number
-    @salary = salary
+    @salary = salary.to_f
     @review = nil
     @performance = nil
+  end
+
+  def salary
+    @salary.to_f
   end
 
   def name

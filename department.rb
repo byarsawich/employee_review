@@ -35,4 +35,13 @@ class Department
   def get_employee_list
     @employees
   end
+
+  def give_raise!(amount)
+    up_for_raise = @employees.select {|e| e.performance > 5}
+    raise_amount = amount.to_f / up_for_raise.length
+    up_for_raise.each do |e|
+      e.give_raise!(raise_amount)
+    end
+  end
+
 end
