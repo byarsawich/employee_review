@@ -150,4 +150,8 @@ class EmployeeReview < Minitest::Test
     assert_equal 120000, d.get_employee(name: "Jack Black").salary
     assert_equal 70000, d.get_employee(name: "John Smith").salary
   end
+
+  def test_review_file_exist
+    assert File.exist?("sample_reviews.txt")
+  end
 end
