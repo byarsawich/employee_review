@@ -154,4 +154,9 @@ class EmployeeReview < Minitest::Test
   def test_review_file_exist
     assert File.exist?("sample_reviews.txt")
   end
+
+  def test_file_can_be_opened_for_reading
+    e = Employee.new("Zeke", "Smith", "smith@test.com", "919-111-5555", 50000)
+    assert e.get_employee_review("sample_reviews.txt")
+  end
 end

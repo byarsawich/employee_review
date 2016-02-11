@@ -33,4 +33,8 @@ class Employee
     @phone_number == e.phone_number
     @salary == salary
   end
+
+  def get_employee_review(filename)
+    input = File.open(filename, "r")
+  end
 end
