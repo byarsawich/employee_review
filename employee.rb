@@ -40,4 +40,5 @@ class Employee
     reg = /\b#{@first_name}\b/i
     temp_array.each  {|s| @review += s.gsub("\n", "") if s.match(reg)}
   end
+
 end

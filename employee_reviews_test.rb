@@ -27,11 +27,11 @@ class EmployeeReview < Minitest::Test
 
   def test_add_employee_performance
     e = Employee.new("Brian", "Yarsawich", "test@test.com", "919-555-5555", 150000)
-    e.performance = 10
-    assert_equal 10, e.performance
+    e.performance = true
+    assert e.performance
     f = Employee.new("John", "Doe", "scum@test.com", "919-111-1111", 10000)
-    f.performance = 1
-    assert_equal 1, f.performance
+    f.performance = false
+    refute f.performance
   end
 
   def test_give_employee_raise
@@ -83,10 +83,10 @@ class EmployeeReview < Minitest::Test
     d.add_employee(Employee.new("Jack", "Black", "black@test.com", "919-123-5555", 120000))
     d.add_employee(Employee.new("John", "Smith", "smith@test.com", "919-111-5555", 50000))
     d.get_employee_list.each do |e|
-      e.performance = 8
+      e.performance = true
     end
     d.give_raise!(60000) do |e|
-      e.performance > 5
+      e.performance == true
     end
     assert_equal 570000, d.total_salary
     assert_equal 160000, d.get_employee(name: "Brian Yarsawich").salary
@@ -107,13 +107,13 @@ class EmployeeReview < Minitest::Test
     d.add_employee(Employee.new("John", "Smith", "smith@test.com", "919-111-5555", 50000))
     d.get_employee_list.each do |e|
       if e.last_name == "Doe"
-        e.performance = 3
+        e.performance = false
       else
-        e.performance = 8
+        e.performance = true
       end
     end
     d.give_raise!(60000) do |e|
-      e.performance > 5
+      e.performance == true
     end
     assert_equal 570000, d.total_salary
     assert_equal 170000, d.get_employee(name: "Brian Yarsawich").salary
@@ -134,9 +134,9 @@ class EmployeeReview < Minitest::Test
     d.add_employee(Employee.new("John", "Smith", "smith@test.com", "919-111-5555", 50000))
     d.get_employee_list.each do |e|
       if e.last_name == "Doe"
-        e.performance = 3
+        e.performance = false
       else
-        e.performance = 8
+        e.performance = true
       end
     end
     d.give_raise!(60000) do |e|
