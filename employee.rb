@@ -53,10 +53,12 @@ class Employee
   private def get_score(words, qualifiers)
     total = 0
     words.each do |w|
-      qualifiers.each do |q|
-        total += 2 if @review.match(/\b#{q}\b\s(\S+\s){,2}\b#{w}\b/i)
+      if @review.match(/\b#{w}\b/i)
+        qualifiers.each do |q|
+          total += 2 if @review.match(/\b#{q}\b\s(\S+\s){,2}\b#{w}\b/i)
+        end
+        total += 1
       end
-      total += 1 if @review.match(/\b#{w}\b/i)
     end
     total
   end
