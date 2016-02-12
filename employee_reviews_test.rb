@@ -168,4 +168,15 @@ class EmployeeReview < Minitest::Test
     e.import_employee_review("sample_reviews.txt")
     assert_equal "Wanda has been an incredibly consistent and effective developer.  Clients are always satisfied with her work, developers are impressed with her productivity, and she's more than willing to help others even when she has a substantial workload of her own.  She is a great asset to Awesome Company, and everyone enjoys working with her.  During the past year, she has largely been devoted to work with the Cement Company, and she is the perfect woman for the job.  We know that work on a single project can become monotonous, however, so over the next few months, we hope to spread some of the Cement Company work to others.  This will also allow Wanda to pair more with others and spread her effectiveness to other projects.", e.review
   end
+
+  def test_review_is_assigned_based_on_imported_reveiew
+    e = Employee.new("Zeke", "Smith", "smith@test.com", "919-111-5555", 50000)
+    e.import_employee_review("sample_reviews.txt")
+    e.assign_employee_performance
+    assert_equal false, e.performance
+    e = Employee.new("Wanda", "Doe", "Doe@test.com", "919-111-5555", 50000)
+    e.import_employee_review("sample_reviews.txt")
+    e.assign_employee_performance
+    assert_equal true, e.performance
+  end
 end
