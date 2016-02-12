@@ -157,6 +157,15 @@ class EmployeeReview < Minitest::Test
 
   def test_file_can_be_opened_for_reading
     e = Employee.new("Zeke", "Smith", "smith@test.com", "919-111-5555", 50000)
-    assert e.get_employee_review("sample_reviews.txt")
+    assert e.import_employee_review("sample_reviews.txt")
+  end
+
+  def test_employee_review_can_be_imported_from_file
+    e = Employee.new("Zeke", "Smith", "smith@test.com", "919-111-5555", 50000)
+    e.import_employee_review("sample_reviews.txt")
+    assert_equal "Zeke is a very positive person and encourages those around him, but he has not done well technically this year.  There are two areas in which Zeke has room for improvement.  First, when communicating verbally (and sometimes in writing), he has a tendency to use more words than are required.  This conversational style does put people at ease, which is valuable, but it often makes the meaning difficult to isolate, and can cause confusion.Second, when discussing new requirements with project managers, less of the information is retained by Zeke long-term than is expected.  This has a few negative consequences: 1) time is spent developing features that are not useful and need to be re-run, 2) bugs are introduced in the code and not caught because the tests lack the same information, and 3) clients are told that certain features are complete when they are inadequate.  This communication limitation could be the fault of project management, but given that other developers appear to retain more information, this is worth discussing further.", e.review
+    e = Employee.new("Wanda", "Doe", "Doe@test.com", "919-111-5555", 50000)
+    e.import_employee_review("sample_reviews.txt")
+    assert_equal "Wanda has been an incredibly consistent and effective developer.  Clients are always satisfied with her work, developers are impressed with her productivity, and she's more than willing to help others even when she has a substantial workload of her own.  She is a great asset to Awesome Company, and everyone enjoys working with her.  During the past year, she has largely been devoted to work with the Cement Company, and she is the perfect woman for the job.  We know that work on a single project can become monotonous, however, so over the next few months, we hope to spread some of the Cement Company work to others.  This will also allow Wanda to pair more with others and spread her effectiveness to other projects.", e.review
   end
 end

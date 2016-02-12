@@ -9,7 +9,7 @@ class Employee
     @email = email
     @phone_number = phone_number
     @salary = salary.to_f
-    @review = nil
+    @review = ""
     @performance = nil
   end
 
@@ -34,7 +34,10 @@ class Employee
     @salary == salary
   end
 
-  def get_employee_review(filename)
+  def import_employee_review(filename)
     input = File.open(filename, "r")
+    temp_array = input.readlines("\n")
+    reg = /\b#{@first_name}\b/i
+    temp_array.each  {|s| @review += s.gsub("\n", "") if s.match(reg)}
   end
 end
